@@ -39,13 +39,9 @@ define(['Promise'], function (Promise) {
                 }
 
                 ctor.apply(host, args);
-            }
 
-            for ( var outer = allMethods.length; outer--;) {
-                var method = allMethods[outer];
-                
-                for( var inner = 0; inner < arguments.length ; inner++) {
-                    ctor = arguments[inner];
+                for ( var outer = allMethods.length; outer--;) {
+                    var method = allMethods[outer];
 
                     if ( host[method] == null ) {
                         host[method] = resolveAsIs;
@@ -54,7 +50,6 @@ define(['Promise'], function (Promise) {
                     if ( ctor && ctor.prototype[method] ) {
                         host[method] = mashup(host[method], ctor.prototype[method], host);
                     }
-
                 }
             }
         },
